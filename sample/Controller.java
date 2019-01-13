@@ -65,8 +65,10 @@ public class Controller {
         }
         else first1="<img src=\""+getClass().getResource("../img/no.jpg")+"\" width=\"40\" align=\"left\"/>";
 
-        //Вывод текста в поле
-        textSuda=textSuda+""+first1+"<div contenteditable=\"false\" style=\""+styleForm(i)+"\">"+test+"</div><div style=\"clear:both\" contenteditable=\"false\">";
+        //добавляем скролинг
+        StringBuilder scrollHtml = scrollWebView(0, 1000000);
+        //Вывод страницы
+        textSuda=scrollHtml+""+textSuda+""+first1+"<div contenteditable=\"false\" style=\""+styleForm(i)+"\">"+test+"</div><div style=\"clear:both\" contenteditable=\"false\">";
 
         webEngine.loadContent(textSuda);
         //Увеличиваем счетчик четности
@@ -83,4 +85,17 @@ public class Controller {
         return sz;
     }
 
+    //Реализация прокрутки через JS
+    public static StringBuilder scrollWebView(int xPos, int yPos) {
+        StringBuilder script = new StringBuilder().append("<html>");
+        script.append("<head>");
+        script.append("   <script language=\"javascript\" type=\"text/javascript\">");
+        script.append("       function toBottom(){");
+        script.append("           window.scrollTo(" + xPos + ", " + yPos + ");");
+        script.append("       }");
+        script.append("   </script>");
+        script.append("</head>");
+        script.append("<body onload='toBottom()'>");
+        return script;
+    }
 }
