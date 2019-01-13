@@ -56,19 +56,19 @@ public class Controller {
         if(test.hashCode()==0) test="...";
         for (int zi=1; zi<10; zi++) {
             String mm="Smile"+zi;
-           test=test.replaceAll(mm, "<img src=\""+url+"/img/sm"+zi+".png\" width=\"30\"/>");
+           test=test.replaceAll(mm, "<img src=\""+url+"/img/sm"+zi+".png\" width=\"30\"/> ");
         }
         //Вставляем фотку
         String first1;
         if (i%2==0){
-        first1="<img src=\""+getClass().getResource("../img/ia.png")+"\" width=\"40\" align=\"right\"/>";
+        first1="<img src=\""+getClass().getResource("../img/ia.png")+"\" width=\"40\" align=\"right\" class=\"img\"/>";
         }
-        else first1="<img src=\""+getClass().getResource("../img/no.jpg")+"\" width=\"40\" align=\"left\"/>";
+        else first1="<img src=\""+getClass().getResource("../img/no.jpg")+"\" width=\"40\" align=\"left\" class=\"img\"/>";
 
         //добавляем скролинг
-        StringBuilder scrollHtml = scrollWebView(0, 1000000);
+        StringBuilder scrollHtml = scrollWebView(0, 1000000, url);
         //Вывод страницы
-        textSuda=scrollHtml+""+textSuda+""+first1+"<div contenteditable=\"false\" style=\""+styleForm(i)+"\">"+test+"</div><div style=\"clear:both\" contenteditable=\"false\">";
+        textSuda=scrollHtml+""+textSuda+""+first1+"<div contenteditable=\"false\" class=\""+styleForm(i)+"\">"+test+"</div><div style=\"clear:both\" contenteditable=\"false\">";
 
         webEngine.loadContent(textSuda);
         //Увеличиваем счетчик четности
@@ -79,16 +79,16 @@ public class Controller {
     //Задаем стиль сообщения. Лучше через CSS. Не додумался как передать туда.
     private String styleForm(int zz){
         String sz;
-        if (zz%2==0) sz="" +
-                "border-radius: 10px; background:#92D1D3; color:000; padding: 5px 10px 5px 10px; margin-bottom:10px; margin-right: 10px; max-width:300px; float:right; text-align: right;";
-        else sz="border-radius: 10px; background:#C9D9D9; color:000; padding: 5px 10px 5px 10px; margin-bottom:10px;float:left; max-width:300px;";
+        if (zz%2==0) sz="MoyText";
+        else sz="Comp";
         return sz;
     }
 
     //Реализация прокрутки через JS
-    public static StringBuilder scrollWebView(int xPos, int yPos) {
+    public static StringBuilder scrollWebView(int xPos, int yPos, String url) {
         StringBuilder script = new StringBuilder().append("<html>");
         script.append("<head>");
+        script.append("<link href=\""+url+"/css/pole.css\" rel=\"stylesheet\">");
         script.append("   <script language=\"javascript\" type=\"text/javascript\">");
         script.append("       function toBottom(){");
         script.append("           window.scrollTo(" + xPos + ", " + yPos + ");");
