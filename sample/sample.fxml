@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
+<?import java.lang.*?>
 <?import java.net.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -11,7 +13,7 @@
    <stylesheets><URL value="@/css/Styles.css" /> </stylesheets>
    <children><HBox>
          <children>
-         <HTMLEditor id="html" fx:id="textArea" disable="true" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;false&quot;&gt;&lt;/body&gt;&lt;/html&gt;" minWidth="300.0" prefHeight="358.0" prefWidth="600.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
+            <WebView fx:id="textArea" prefHeight="358.0" prefWidth="600.0" HBox.hgrow="ALWAYS" />
          </children>
    </HBox>
       <HBox prefHeight="49.0" prefWidth="600.0">

@@ -3,12 +3,12 @@ package sample;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.web.HTMLEditor;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 
 public class Controller {
     @FXML
-    HTMLEditor textArea;
-
+    WebView textArea;
 
     @FXML
     TextField textField;
@@ -44,9 +44,9 @@ public class Controller {
     public void smile9() {
         textField.appendText("Smile9");
     }
+    public String textSuda="";
     public void sendMsg() {
-
-        String first =textArea.getHtmlText();
+        final WebEngine webEngine = textArea.getEngine();
         //Фиксируем URL
         String url= getClass().getResource("..").toString();
         //Вырезаем тэги из поля ввода
@@ -66,12 +66,13 @@ public class Controller {
         else first1="<img src=\""+getClass().getResource("../img/no.jpg")+"\" width=\"40\" align=\"left\"/>";
 
         //Вывод текста в поле
-        textArea.setHtmlText(first+""+first1+"<div contenteditable=\"false\" style=\""+styleForm(i)+"\">"+test+"</div><div style=\"clear:both\" contenteditable=\"false\">");
+        textSuda=textSuda+""+first1+"<div contenteditable=\"false\" style=\""+styleForm(i)+"\">"+test+"</div><div style=\"clear:both\" contenteditable=\"false\">";
+
+        webEngine.loadContent(textSuda);
         //Увеличиваем счетчик четности
         i++;
         textField.clear();
         textField.requestFocus();
-
     }
     //Задаем стиль сообщения. Лучше через CSS. Не додумался как передать туда.
     private String styleForm(int zz){
