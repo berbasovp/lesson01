@@ -1,12 +1,20 @@
 package sample;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
-public class Controller {
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.Socket;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class Controller implements Initializable {
     @FXML
     WebView textArea;
 
@@ -45,36 +53,86 @@ public class Controller {
         textField.appendText("Smile9");
     }
     public String textSuda="";
+
+
+    Socket socket;
+    DataInputStream in;
+    DataOutputStream out;
+
+    final String IP_ADRESS = "localhost";
+    final int PORT = 8189;
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+        try {
+            socket = new Socket(IP_ADRESS, PORT);
+            in = new DataInputStream(socket.getInputStream());
+            out = new DataOutputStream(socket.getOutputStream());
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        while (true) {
+                            String str = in.readUTF();
+                            if(str.equals("/serverClosed")) break;
+                            mess(str);
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } finally {
+                        try {
+                            socket.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }).start();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+private void mess(String z){
+    final WebEngine webEngine = textArea.getEngine();
+    webEngine.loadContent(z);
+}
     public void sendMsg() {
-        final WebEngine webEngine = textArea.getEngine();
-        //Фиксируем URL
-        String url= getClass().getResource("..").toString();
-        //Вырезаем тэги из поля ввода
-        String test=textField.getText();
-        test=test.replaceAll("<.*>","");
-       //Заменяем текст смайликами. (Не лучший вариант)
-        if(test.hashCode()==0) test="...";
-        for (int zi=1; zi<10; zi++) {
-            String mm="Smile"+zi;
-           test=test.replaceAll(mm, "<img src=\""+url+"/img/sm"+zi+".png\" width=\"30\"/> ");
-        }
-        //Вставляем фотку
-        String first1;
-        if (i%2==0){
-        first1="<img src=\""+getClass().getResource("../img/ia.png")+"\" width=\"40\" align=\"right\" class=\"img\"/>";
-        }
-        else first1="<img src=\""+getClass().getResource("../img/no.jpg")+"\" width=\"40\" align=\"left\" class=\"img\"/>";
+        try {
+            final WebEngine webEngine = textArea.getEngine();
+            //Фиксируем URL
+            String url = getClass().getResource("..").toString();
+            //Вырезаем тэги из поля ввода
+            String test = textField.getText();
+            test = test.replaceAll("<.*>", "");
+            //Заменяем текст смайликами. (Не лучший вариант)
+            if (test.hashCode() == 0) test = "...";
+            for (int zi = 1; zi < 10; zi++) {
+                String mm = "Smile" + zi;
+                test = test.replaceAll(mm, "<img src=\"" + url + "/img/sm" + zi + ".png\" width=\"30\"/> ");
+            }
+            //Вставляем фотку
+            String first1;
+            if (i % 2 == 0) {
+                first1 = "<img src=\"" + getClass().getResource("../img/ia.png") + "\" width=\"40\" align=\"right\" class=\"img\"/>";
+            } else
+                first1 = "<img src=\"" + getClass().getResource("../img/no.jpg") + "\" width=\"40\" align=\"left\" class=\"img\"/>";
 
-        //добавляем скролинг
-        StringBuilder scrollHtml = scrollWebView(0, 1000000, url);
-        //Вывод страницы
-        textSuda=scrollHtml+""+textSuda+""+first1+"<div contenteditable=\"false\" class=\""+styleForm(i)+"\">"+test+"</div><div style=\"clear:both\" contenteditable=\"false\">";
+            //добавляем скролинг
+            StringBuilder scrollHtml = scrollWebView(0, 1000000, url);
+            //Вывод страницы
+            textSuda = scrollHtml + "" + textSuda + "" + first1 + "<div contenteditable=\"false\" class=\"" + styleForm(i) + "\">" + test + "</div><div style=\"clear:both\" contenteditable=\"false\">";
 
-        webEngine.loadContent(textSuda);
-        //Увеличиваем счетчик четности
-        i++;
-        textField.clear();
-        textField.requestFocus();
+            webEngine.loadContent(textSuda);
+            out.writeUTF(textSuda);
+            //Увеличиваем счетчик четности
+            i++;
+            textField.clear();
+            textField.requestFocus();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     //Задаем стиль сообщения. Лучше через CSS. Не додумался как передать туда.
     private String styleForm(int zz){
