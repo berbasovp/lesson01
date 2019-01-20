@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -76,6 +77,7 @@ public class Controller implements Initializable {
                             String str = in.readUTF();
                             if(str.equals("/serverClosed")) break;
                             mess(str);
+                            textSuda=str;
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -95,12 +97,17 @@ public class Controller implements Initializable {
 
     }
 private void mess(String z){
-    final WebEngine webEngine = textArea.getEngine();
-    webEngine.loadContent(z);
-}
+    Platform.runLater(new Runnable() {
+        @Override
+        public void run() {
+            final WebEngine webEngine = textArea.getEngine();
+            webEngine.loadContent(z);
+        }
+    });
+    }
+
     public void sendMsg() {
         try {
-            final WebEngine webEngine = textArea.getEngine();
             //Фиксируем URL
             String url = getClass().getResource("..").toString();
             //Вырезаем тэги из поля ввода
@@ -123,8 +130,6 @@ private void mess(String z){
             StringBuilder scrollHtml = scrollWebView(0, 1000000, url);
             //Вывод страницы
             textSuda = scrollHtml + "" + textSuda + "" + first1 + "<div contenteditable=\"false\" class=\"" + styleForm(i) + "\">" + test + "</div><div style=\"clear:both\" contenteditable=\"false\">";
-
-            webEngine.loadContent(textSuda);
             out.writeUTF(textSuda);
             //Увеличиваем счетчик четности
             i++;
