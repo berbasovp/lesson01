@@ -20,13 +20,14 @@ public class ServerTest {
         Socket socket = null;
 
         try {
+            AuthService.connect();
             server = new ServerSocket(8189);
             System.out.println("Сервер запущен!");
 
             while (true) {
                 socket = server.accept();
                 System.out.println("Клиент подключился");
-                clients.add(new ClientHandler(this,socket));
+                new ClientHandler(this,socket);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -43,7 +44,12 @@ public class ServerTest {
             }
         }
     }
-
+public void subscribe (ClientHandler client) {
+        clients.add(client);
+}
+public  void unsubscribe (ClientHandler client) {
+        clients.remove(client);
+}
     public void broadcastMsg(String msg) {
         for (ClientHandler o: clients) {
             o.sendMsg(msg);
