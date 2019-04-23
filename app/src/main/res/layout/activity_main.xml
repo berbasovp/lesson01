@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.berbasov.weather.MainActivity">
+    tools:context="com.berbasov.weather.MainActivity"
+
+    >
 
     <ImageView
         android:layout_width="match_parent"
@@ -16,14 +18,15 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:background="#50000000"
+        android:background="@drawable/circle_ygl"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Погода в Москве"
+            android:text="@string/mos"
             android:textColor="#fff"
             android:textSize="25dp"
             android:textStyle="bold" />
@@ -39,7 +42,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ветер, облачно, давление 745"
+            android:text="@string/des"
             android:textColor="#fff"
             android:textSize="15dp" />
     </LinearLayout>
