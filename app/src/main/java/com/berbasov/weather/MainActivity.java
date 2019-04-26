@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -37,6 +38,21 @@ public class MainActivity extends AppCompatActivity{
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     Intent intent = new Intent(MainActivity.this, Main2Activity.class);
                     EditText editText = (EditText) findViewById(R.id.form);
+                    CheckBox wind = findViewById(R.id.wind);
+                    CheckBox damp = findViewById(R.id.damp);
+                    CheckBox pressure = findViewById(R.id.pressure);
+                    if (wind.isChecked()) {
+                        intent.putExtra("WIND", 1);
+                    }
+
+                    if (damp.isChecked()) {
+                        intent.putExtra("DAMP", 1);
+                    }
+
+                    if (pressure.isChecked()) {
+                        intent.putExtra("PRESSURE", 1);
+                    }
+
                     String message = editText.getText().toString();
                     intent.putExtra(TEXT, message);
                     startActivity(intent);

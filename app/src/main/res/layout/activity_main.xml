@@ -18,7 +18,24 @@
         android:background="@drawable/circle_ygl"
         android:orientation="vertical"
         android:padding="16dp">
-
+        <CheckBox
+            android:id="@+id/wind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Сила ветра"
+            android:textColor="#fff"/>
+        <CheckBox
+            android:id="@+id/damp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Влажность"
+            android:textColor="#fff"/>
+        <CheckBox
+            android:id="@+id/pressure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Давление"
+            android:textColor="#fff"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
