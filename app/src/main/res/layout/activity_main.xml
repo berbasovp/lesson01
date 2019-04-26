@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.berbasov.weather.MainActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/fon" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/circle_ygl"
+        android:orientation="vertical"
+        android:padding="16dp">
+        <CheckBox
+            android:id="@+id/wind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Сила ветра"
+            android:textColor="#fff"/>
+        <CheckBox
+            android:id="@+id/damp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Влажность"
+            android:textColor="#fff"/>
+        <CheckBox
+            android:id="@+id/pressure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Давление"
+            android:textColor="#fff"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Узнать погоду в городе"
+            android:textColor="#fff"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:width="200dp"
+            android:background="#fff"
+            android:inputType="textShortMessage"
+            android:hint="Название города"
+            android:onClick="sendMessage1"
+            android:id="@+id/form"
+            android:imeOptions="actionDone"
+            tools:ignore="Autofill,LabelFor" />
+    </LinearLayout>
+
+</RelativeLayout>
