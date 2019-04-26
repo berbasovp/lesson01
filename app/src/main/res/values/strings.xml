@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Weather</string>
-    <string name="mos">Погода в Москве</string>
+    <string name="mos">Москва</string>
     <string name="des">Ветер, облачно, давление 745</string>
 </resources>

@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.berbasov.weather.MainActivity">
-
+    tools:context=".Main2Activity">
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         android:src="@drawable/fon" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,28 +18,37 @@
         android:layout_centerVertical="true"
         android:background="@drawable/circle_ygl"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Погода в городе:"
+            android:textColor="#fff"
+            android:textSize="25sp"/>
+        <TextView
+            android:id="@+id/city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/mos"
+            android:textColor="#fff"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="20 C"
+            android:textColor="#fff"
+            android:textSize="70sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Узнать погоду в городе"
+            android:text="@string/des"
             android:textColor="#fff"
-            android:textSize="25sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:width="200dp"
-            android:background="#fff"
-            android:inputType="textShortMessage"
-            android:hint="Название города"
-            android:onClick="sendMessage1"
-            android:id="@+id/form"
-            android:imeOptions="actionDone"
-            tools:ignore="Autofill,LabelFor" />
+            android:textSize="15sp" />
     </LinearLayout>
-
 </RelativeLayout>
