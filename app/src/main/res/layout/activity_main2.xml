@@ -13,18 +13,14 @@
         android:src="@drawable/fon" />
 
     <LinearLayout
+        style="@style/CenterBlock"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:background="@drawable/circle_ygl"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_height="wrap_content">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Погода в городе:"
+            android:text="@string/weatherCity"
             android:textColor="#fff"
             android:textSize="25sp" />
 
@@ -52,51 +48,34 @@
 
             <TextView
                 android:id="@+id/windTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ветер"
-                android:textColor="#fff"
-                android:textSize="15sp" />
+
+                style="@style/HaracStyle"
+                android:text="@string/windPower" />
 
             <TextView
                 android:id="@+id/wind1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textColor="#fff"
-                android:textSize="15sp" />
+                style="@style/HaracStyle"
+                android:text="0" />
 
             <TextView
                 android:id="@+id/dampTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Влажность"
-                android:textColor="#fff"
-                android:textSize="15sp" />
+                style="@style/HaracStyle"
+                android:text="@string/humidity" />
 
             <TextView
                 android:id="@+id/damp1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textColor="#fff"
-                android:textSize="15sp" />
+                style="@style/HaracStyle"
+                android:text="0" />
 
             <TextView
                 android:id="@+id/pressureTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Давление"
-                android:textColor="#fff"
-                android:textSize="15sp" />
+                style="@style/HaracStyle"
+                android:text="@string/pressure" />
 
             <TextView
                 android:id="@+id/pressure1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textColor="#fff"
-                android:textSize="15sp" />
+                style="@style/HaracStyle"
+                android:text="0" />
 
         </LinearLayout>
     </LinearLayout>
