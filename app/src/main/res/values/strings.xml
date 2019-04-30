@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Weather</string>
+    <string name="mos">Москва</string>
+    <string name="cityName">Название города</string>
+    <string name="findWeather">Узнать погоду в городе</string>
+    <string name="windPower">Сила ветра</string>
+    <string name="humidity">Влажность</string>
+    <string name="pressure">Давление</string>
+    <string name="weatherCity">Погода в городе:</string>
+</resources>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Main2Activity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/fon" />
+
+    <LinearLayout
+        style="@style/CenterBlock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/weatherCity"
+            android:textColor="#fff"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/mos"
+            android:textColor="#fff"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="20 C"
+            android:textColor="#fff"
+            android:textSize="70sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/windTitle"
+
+                style="@style/HaracStyle"
+                android:text="@string/windPower" />
+
+            <TextView
+                android:id="@+id/wind1"
+                style="@style/HaracStyle"
+                android:text="0" />
+
+            <TextView
+                android:id="@+id/dampTitle"
+                style="@style/HaracStyle"
+                android:text="@string/humidity" />
+
+            <TextView
+                android:id="@+id/damp1"
+                style="@style/HaracStyle"
+                android:text="0" />
+
+            <TextView
+                android:id="@+id/pressureTitle"
+                style="@style/HaracStyle"
+                android:text="@string/pressure" />
+
+            <TextView
+                android:id="@+id/pressure1"
+                style="@style/HaracStyle"
+                android:text="0" />
+
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

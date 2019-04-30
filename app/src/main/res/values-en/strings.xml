@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Weather</string>
+    <string name="mos">Moscow</string>
+    <string name="cityName">City name</string>
+    <string name="findWeather">Find out the weather in the city</string>
+    <string name="windPower">Wind power</string>
+    <string name="humidity">Humidity</string>
+    <string name="pressure">Pressure</string>
+    <string name="weatherCity">Weather in the city:</string>
+</resources>
